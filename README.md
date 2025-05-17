@@ -1,122 +1,144 @@
 N-X-BD VPS AutoScript
 
-A fully automated script to set up SSH, XRAY (V2Ray: Vmess/Vless), Trojan, OVPN, and L2TP VPN services on Ubuntu servers. Supports Ubuntu 20.04 / 22.04 / 24.04.
+<p align="center">
+  <img src="https://img.shields.io/badge/OS-Ubuntu%2020.04%2F22.04%2F24.04-orange">
+  <img src="https://img.shields.io/badge/SSH-Enabled-green">
+  <img src="https://img.shields.io/badge/Xray-Vmess%2FVless-blue">
+  <img src="https://img.shields.io/badge/Trojan-Enabled-yellow">
+  <img src="https://img.shields.io/badge/L2TP-Enabled-blueviolet">
+  <img src="https://img.shields.io/badge/OpenVPN-Supported-success">
+</p>
+---
 
-Features
+✅ Supported Protocols
 
-SSH WebSocket (80), SSL (443)
+SSH (WebSocket 80 / SSL 443)
 
-XRAY (TLS 443, NTLS 80): Vmess, Vless, Trojan
+XRAY (Vmess, Vless) TLS 443 / NTLS 80
 
-L2TP/IPSec, OpenVPN, Trojan
+Trojan (TLS)
 
-Device/IP Limit
+L2TP/IPSec
 
-Bandwidth Limit
-
-Expiry Date Management
-
-Telegram Bot Alerts on expiry or limit exceed
-
-Custom SSH Banner & HTTP Headers
-
-Auto Backup to .tar.gz
-
-Web Interface for Backup/Restore & Configuration (Port 3000)
+OpenVPN (OVPN)
 
 
 
 ---
 
-Installation
+✨ Features
 
-Run the following command in your VPS (Ubuntu 20.04+):
+User Expiry & Auto Lock System
 
-bash <(curl -sL https://raw.githubusercontent.com/nayem-48ai/n-x-bd-vps-autoscript/main/install.sh)
+Device/IP Limit Per User
 
-> Make sure your server has curl, wget, screen installed. Otherwise, the script installs them automatically.
+Bandwidth Limit Per User
+
+Telegram Notification for Expired / Limit Crossed
+
+Auto Backup System (Daily .tar.gz)
+
+Manual Backup/Restore via Web UI
+
+Editable SSH Banner & HTTP Response
+
+ASCII Username Banner
+
+Installation runs on fresh Ubuntu VPS
+
+
+
+---
+
+⚙️ Installation
+
+sudo apt update -y && sudo apt install unzip curl wget screen -y
+wget https://github.com/nayem-48ai/n-x-bd-vps-autoscript/archive/refs/heads/main.zip
+unzip main.zip
+cd n-x-bd-vps-autoscript-main
+bash install.sh
+
+> After install, configure Telegram manually in: config/telegram_config.sh
 
 
 
 
 ---
 
-Telegram Bot Setup (Manual)
+📦 Backup & Restore
 
-After install, edit:
+Manual Backup:
+
+bash utils/backup.sh
+
+Auto Backup (Daily at 3AM):
+
+Enabled by default via cron. Sent to Telegram if configured.
+
+Restore:
+
+bash utils/restore.sh /path/to/your-backup.tar.gz
+
+
+---
+
+🌐 Web Interface (Port 3000)
+
+Accessible via: http://your-server-ip:3000
+
+Features:
+
+Download latest backup
+
+Upload backup to restore
+
+Banner editor (SSH / HTTP)
+
+
+
+
+---
+
+📲 Telegram Bot Setup (Manual)
+
+Open file:
 
 nano config/telegram_config.sh
 
-Replace:
+Edit values:
 
 BOT_TOKEN="your_bot_token_here"
 CHAT_ID="your_chat_id_here"
 
-Save and exit.
+
+---
+
+📁 Directory Structure
+
+n-x-bd-vps-autoscript/
+├── install.sh
+├── ascii/banner.txt
+├── config/telegram_config.sh
+├── data/user_db.txt
+├── public/index.html
+├── scripts/
+│   ├── ssh_setup.sh
+│   ├── xray_setup.sh
+│   └── ...
+├── utils/
+│   ├── backup.sh / restore.sh
+│   ├── ssh_limit_monitor.sh
+│   └── xray_limit_monitor.sh
 
 
 ---
 
-Backup & Restore
-
-Auto Backup:
-
-Daily backup to .tar.gz
-
-Sent to Telegram Bot if configured
-
-
-Manual Backup via Web:
-
-Navigate to http://your_server_ip:3000
-
-Download latest backup
-
-Upload .tar.gz file to restore
-
-
-Manual Restore via Script:
-
-bash utils/restore.sh /path/to/backup.tar.gz
-
-
----
-
-Web Interface (Node.js)
-
-Start server manually:
-
-
-cd web && node server.js
-
-Visit: http://<your-ip>:3000
-
-Features:
-
-Backup Download/Upload
-
-Telegram Bot test ping
-
-Banner & Header Editor
-
-
-
-
----
-
-Contributions
+☑️ Maintainer
 
 Developer: Nayem (N-X-BD)
 
-Project Repo: GitHub - nayem-48ai/n-x-bd-vps-autoscript
+GitHub: nayem-48ai
 
 
-Feel free to fork, improve, and share.
-
-
----
-
-Disclaimer
-
-Use at your own risk. Developer is not responsible for any misuse of this script.
+Enjoy secure, monitored, and auto-managed VPN service from your VPS!
 
