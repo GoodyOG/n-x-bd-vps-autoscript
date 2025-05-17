@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>N-X-BD Backup Panel</title>
+</head>
+<body>
+  <h2>N-X-BD VPS Backup & Restore</h2>
+  <p><a href="/download">Download Latest Backup</a></p>
+  <form action="/restore" method="post" enctype="multipart/form-data">
+    <input type="file" name="restoreFile" required />
+    <button type="submit">Restore Backup</button>
+  </form>
+</body>
+</html>
