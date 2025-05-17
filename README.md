@@ -82,14 +82,14 @@ Enabled by default via cron. Sent to Telegram if configured.
 
 Restore:
 
-bash ```utils/restore.sh``` |``/path/to/your-backup.tar.gz```
+```bash utils/restore.sh |/path/to/your-backup.tar.gz```
 
 
 ---
 
 🌐 Web Interface (Port 3000)
 
-Accessible via: http://your-server-ip:3000
+Accessible via: ```http://your-server-ip:3000```
 
 Features:
 
@@ -108,13 +108,26 @@ Banner editor (SSH / HTTP)
 
 Open file:
 
-```nano config/telegram_config.sh```
+```
+nano config/telegram_config.sh
+```
 
 Edit values:
 
-```BOT_TOKEN="your_bot_token_here"
-CHAT_ID="your_chat_id_here"```
+```
+BOT_TOKEN="your_bot_token_here"
+CHAT_ID="your_chat_id_here"
+```
 
+✅ If you want the menu to auto-show upon login to the VPS:
+
+Then you need to add a line like the following to your ```.bashrc``` or .profile:
+
+```
+echo "bash /usr/local/nxbd/menu.sh" >> ~/.bashrc
+```
+
+Now whenever you log in to the VPS, the ```menu.sh``` script will run and display the menu options.
 
 ---
 
