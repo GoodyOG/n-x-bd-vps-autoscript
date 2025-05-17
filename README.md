@@ -51,12 +51,17 @@ Installation runs on fresh Ubuntu VPS
 ---
 
 ⚙️ Installation
-
-sudo apt update -y && sudo apt install unzip curl wget screen -y
-wget https://github.com/nayem-48ai/n-x-bd-vps-autoscript/archive/refs/heads/main.zip
-unzip main.zip
-cd n-x-bd-vps-autoscript-main
-bash install.sh
+```
+sysctl -w net.ipv6.conf.all.disable_ipv6=1 \
+&& sysctl -w net.ipv6.conf.default.disable_ipv6=1 \
+&& apt-get update -y \
+&& apt-get update --fix-missing \
+&& apt-get install wget curl screen dnsutils -y \
+&& curl -L -k -sS https://raw.githubusercontent.com/n-x-bd/n-x-bd-vps-autoscript/main/install.sh -o install-nxbd \
+&& chmod +x install-nxbd \
+&& screen -S nxbd-autoscript ./install-nxbd; \
+if [ $? -ne 0 ]; then rm -f install-nxbd; fi
+```
 
 > After install, configure Telegram manually in: config/telegram_config.sh
 
@@ -77,7 +82,7 @@ Enabled by default via cron. Sent to Telegram if configured.
 
 Restore:
 
-bash utils/restore.sh /path/to/your-backup.tar.gz
+bash ```utils/restore.sh``` |``/path/to/your-backup.tar.gz```
 
 
 ---
@@ -103,12 +108,12 @@ Banner editor (SSH / HTTP)
 
 Open file:
 
-nano config/telegram_config.sh
+```nano config/telegram_config.sh```
 
 Edit values:
 
-BOT_TOKEN="your_bot_token_here"
-CHAT_ID="your_chat_id_here"
+```BOT_TOKEN="your_bot_token_here"
+CHAT_ID="your_chat_id_here"```
 
 
 ---
