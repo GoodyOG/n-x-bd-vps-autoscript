@@ -57,7 +57,7 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1 \
 && apt-get update -y \
 && apt-get update --fix-missing \
 && apt-get install wget curl screen dnsutils -y \
-&& curl -L -k -sS https://raw.githubusercontent.com/n-x-bd/n-x-bd-vps-autoscript/main/install.sh -o install-nxbd \
+&& curl -L -k -sS https://raw.githubusercontent.com/GoodyOG/n-x-bd-vps-autoscript/main/install.sh -o install-nxbd \
 && chmod +x install-nxbd \
 && screen -S nxbd-autoscript ./install-nxbd; \
 if [ $? -ne 0 ]; then rm -f install-nxbd; fi
